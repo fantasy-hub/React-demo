@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../../store/user'
-import { Button } from 'antd'
+import { Button, Input } from 'antd'
 
 const TestLogin = connect(
     // mapStateToProps 连接的state
@@ -101,23 +101,32 @@ const Login = connect(
     state => ({
         isLogin: state.user.isLogin,
         loading: state.user.loading,
+        error: state.user.error,
     }),
     { login }
-)(function ({ location, isLogin, loading, login }) {
+)(function ({ location, isLogin, loading, error, login }) {
     // console.log(location, 'location');
+    const [input, setInput] = useState('')
     const redirect = location.state.redirect || '/'
 
     if (isLogin) {
         return (<Redirect to={redirect}></Redirect>)
-    }
+    }   
 
     return (
         <div>
             <p>用户登陆</p>
             <hr />
-            <Button type='primary' onClick={login} disabled={loading}>
+
+            {/* thunk */}      
+            {/* <Button type='primary' onClick={login} disabled={loading}>
                 {loading ? '登陆中...' : '登陆'}
-            </Button>
+            </Button> */}
+
+            {/* saga */}
+            <Input style={{ width: '200px' }} value={input} onChange={(e) => setInput(e.target.value)}></Input>
+            <Button onClick={() => login(input)} disabled={loading}>登陆</Button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     )
 })

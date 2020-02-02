@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Provider } from "react-redux";
-import store from './store/index'
+// import { Provider } from "react-redux";
+// import store from './store/index'
 // import Clock from './components/Clock/index'
 // import Cart from './components/Cart/index'
 // import AntdTest from './components/AntdTest/index'
@@ -14,7 +14,8 @@ import store from './store/index'
 // import WrapLoginForm from './components/WrapLoginForm/index'
 // import CustomLoginForm from './components/CustomLoginForm/index2'
 // import ReduxTest from './components/ReduxTest/index'
-import RouteSample from'./components/RouteSample/index'
+// import RouteSample from'./components/RouteSample/index'
+import Test from './components/Test/index'
 
 function App() {
     // const header = <h1>react</h1>;
@@ -58,13 +59,15 @@ function App() {
             {/* <CustomLoginForm></CustomLoginForm> */}
 
             {/* Redux */}
-            <Provider store={store}>
-                {/* <ReduxTest></ReduxTest> */}
+            {/* <Provider store={store}>
+                <ReduxTest></ReduxTest>
                 <RouteSample></RouteSample>
-            </Provider>
+            </Provider> */}
 
+            {/* Test */}
+            <Test></Test>
         </div>
     );
 }
 
-export default App;
+export default App
